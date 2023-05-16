@@ -42,24 +42,23 @@
 </div>
 </div>
 </div>
-<div style="margin-top: 10px; margin-bottom: 20px; text-align: center;">
-  <div class="w3-bar">
-    <button class="btn btn-primary" style="margin-left: 10px;margin-right: 10px;" v-if="this.pagination._page > 1" @click="prevPage()">Prev</button>
-<button class="btn btn-primary" v-if="this.pagination._page !== this.pagination.totalPages" @click="nextPage()">Next</button>
+<div class="text-center">
+<div style="width: 235px;margin-top: 10px; margin-bottom: 20px;">
+  <Pagination :currentPage="this.pagination._page" :totalPages="this.pagination.totalPages" @page-change="changePage" />
 </div>
 </div>
-
 </div>
     </div>
   </template>
 <script>
 import NavBar from '../components/NavBar.vue'
 import axios from 'axios'
-
+import Pagination from '../components/Pagination.vue'
 export default {
   name: 'ProductList',
   components: {
-    NavBar
+    NavBar,
+    Pagination
   },
   data() {
     return {
@@ -102,6 +101,7 @@ export default {
           this.products = response.data;
           this.pagination.totalRows = Number(response.headers['x-total-count']);
           this.pagination.totalPages = Math.ceil(this.pagination.totalRows / this.pagination._limit);
+          
         })
         .catch(error => {
           console.error(error);
@@ -159,18 +159,10 @@ export default {
       this.getProducts();
     }
     },
-    nextPage() {
-      if (this.pagination._page < this.pagination.totalPages) {
-        this.pagination._page++;
-        this.getProducts();
-      }
-    },
-    prevPage() {
-      if (this.pagination._page > 1) {
-        this.pagination._page--;
-        this.getProducts();
-      }
-    
+
+    changePage(page) {
+      this.pagination._page = page;
+      this.getProducts();
     }
   
   }

@@ -57,16 +57,9 @@
 
                             <div class="col-lg-6">
                                 <div class="bg-light rounded-pill px-4 py-3 text-uppercase font-weight-bold">Thành tiền</div>
-                                <div class="p-4">
-                                    <ul class="list-unstyled mb-4">
-                                        <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Tổng tiền hàng</strong><strong>100 $</strong></li>
-                                        <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Phí vận chuyển</strong><strong>Free ship</strong></li>
-                                        <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">VAT</strong><strong>10 $</strong></li>
-                                        <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Tổng thanh toán</strong>
-                                            <h5 class="font-weight-bold">110 $</h5>
-                                        </li>
-                                    </ul><a href="buy" class="btn btn-dark rounded-pill py-2 btn-block">Mua hàng</a>
-                                </div>
+                                <div style="text-align: right; margin-top: 20px">
+                                <button  class="btn btn-dark">Mua hàng</button>
+                            </div>
                             </div>
                         </div>
 
