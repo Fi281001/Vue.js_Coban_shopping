@@ -1,4 +1,7 @@
 <template>
+    <div>
+        <NavBar/>
+    </div>
     <div class="product_detail">
         <div className="container py-5">
             <div className="row py-4">
@@ -26,8 +29,12 @@
     </div>
 </template>
 <script>
+ import NavBar from '../components/NavBar.vue'
  export default {
     name: 'ProductDetail',
+    components:{
+        NavBar
+    },
     data(){
         return {
             product: [],

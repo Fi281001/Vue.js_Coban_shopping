@@ -1,4 +1,5 @@
 <template>
+  <NavBar/>
   <div class="home">
     <img src="../assets/shopping.jpg" alt="error" style="height: 550px; width: 100%;"/>
   </div>
@@ -22,8 +23,13 @@
 </div>
 </template>
  <script>
+ import NavBar from '../components/NavBar.vue'
     export default {
+ 
     name: 'product',
+    components: {
+    NavBar,
+  },
     data(){
         return {
             products: [

@@ -17,12 +17,20 @@
          
           </ul>
           <div className="buttons">
-            <router-link to="/login" class="btn btn-outline-dark">
+            <template v-if="loggedIn">
+            <button style="width: 93px;" class="btn btn-outline-dark" @click="logout">
+                <i class='fa fa-sign-out me-1'></i> {{   this.username  }}
+              </button>
+            </template>
+            <template v-else>
+              <router-link to="/login" class="btn btn-outline-dark">
                 <i class='fa fa-sign-in me-1'></i>Login
-            </router-link>
-            <router-link to="/register" class="btn btn-outline-dark ms-2">
+              </router-link>
+              <router-link to="/register" class="btn btn-outline-dark ms-2">
                 <i className='fa fa-user-plus me-1'></i>Register
-            </router-link>
+              </router-link>
+            </template>
+         
             <router-link to="/cart" class="btn btn-outline-dark ms-2">
                 <i className='fa fa-shopping-cart me-1'></i>Cart
             </router-link>
@@ -32,3 +40,31 @@
     </nav>
     </div>
 </template>
+<script>
+
+
+export default {
+  data() {
+    return {
+      loggedIn: false
+    };
+  },
+  methods: {
+    logout() {
+      
+      this.loggedIn = false;
+      localStorage.removeItem('username');
+      this.$router.push('/login'); 
+    }
+  },
+  created() {
+    const storedUsername = localStorage.getItem('username');
+    console.log(storedUsername );
+    if (storedUsername) {
+      this.username = storedUsername;
+      this.loggedIn = true;
+    }
+   
+  }
+};
+</script>

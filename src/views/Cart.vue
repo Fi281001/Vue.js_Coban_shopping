@@ -1,4 +1,7 @@
 <template>
+    <div>
+        <NavBar/>
+    </div>
     <div class="cart">
         <div class="mt-5 pt-5 container">
                     <div class="pb-5">
@@ -72,3 +75,13 @@
             </div>
     </div>
 </template>
+<script>
+import NavBar from '../components/NavBar.vue'
+   export default {
+
+   name: 'product',
+   components: {
+   NavBar,
+ },
+}
+</script> 

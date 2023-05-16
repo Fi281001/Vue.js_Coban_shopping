@@ -1,18 +1,17 @@
 <template>
-  <NavBar/>
-  
+  <!-- <HomeView/> -->
   <router-view/>
 </template>
 
 <script>
 // @ is an alias to /src
-import NavBar from '@/components/NavBar.vue'
+// import HomeView from '@/views/HomeView.vue'
 
 export default {
-  name: 'NarBar',
-  components: {
-    NavBar,
-  }
+  name: 'Home',
+  // components: {
+  //   HomeView,
+  // }
 }
 </script>
 
