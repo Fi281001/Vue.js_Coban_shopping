@@ -32,8 +32,9 @@
             </template>
          
             <router-link to="/cart" class="btn btn-outline-dark ms-2">
-                <i className='fa fa-shopping-cart me-1'></i>Cart
-            </router-link>
+  <i class="fa fa-shopping-cart me-1"></i>Cart: {{ getSum }}
+</router-link>
+
           </div>
         </div>
       </div>
@@ -43,11 +44,24 @@
 <script>
 
 
+// import { computed} from "vue";
+//   import { useStore } from "vuex";
+  import { mapGetters } from "vuex";
 export default {
   data() {
     return {
       loggedIn: false
     };
+  },
+  // setup() {
+  //     // const store = useStore();
+  //     // const sum = computed(() => store.getters.getSum)
+  //     // return {
+  //     //   sum
+  //     // };
+  //   },
+  computed: {
+    ...mapGetters([ "getSum"]),
   },
   methods: {
     logout() {
@@ -59,7 +73,6 @@ export default {
   },
   created() {
     const storedUsername = localStorage.getItem('username');
-    console.log(storedUsername );
     if (storedUsername) {
       this.username = storedUsername;
       this.loggedIn = true;

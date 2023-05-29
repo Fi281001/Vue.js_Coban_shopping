@@ -1,8 +1,8 @@
 <template>
-    <div style="display: flex; justify-content: space-around">
-      <button class="btn btn-primary" :disabled="currentPage === 1" @click="prevPage()">Prev</button>
-      <button class="btn btn-primary" disabled>{{ currentPage }}</button>
-      <button class="btn btn-primary" :disabled="currentPage === totalPages" @click="nextPage()">Next</button>
+    <div style="display: flex; justify-content: space-between">
+      <button style="margin-right: 10px;" class="btn btn-primary" :disabled="page === 1" @click="prevPage()">Prev</button>
+      <button style="margin-inline: 5px;" v-for="pageNum in totalPages" :key="pageNum" :class="['btn', 'btn-primary', { 'disabled': pageNum === page}]" @click="goToPage(pageNum)">{{ pageNum }}</button>
+      <button style="margin-left: 10px;" class="btn btn-primary" :disabled="page === totalPages" @click="nextPage()">Next</button>
     </div>
   </template>
 
@@ -10,7 +10,7 @@
   export default {
     name: 'Pagination',
     props: {
-      currentPage: {
+      page: {
         type: Number,
         required: true
       },
@@ -20,11 +20,14 @@
       }
     },
     methods: {
+     goToPage(page) {
+            this.$emit('page-change', page);
+        },
       nextPage() {
-        this.$emit('page-change', this.currentPage + 1);
+        this.$emit('page-change', this.page + 1);
       },
       prevPage() {
-        this.$emit('page-change', this.currentPage - 1);
+        this.$emit('page-change', this.page - 1);
       }
     }
   }

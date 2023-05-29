@@ -44,7 +44,7 @@
 </div>
 <div class="text-center">
 <div style="width: 235px;margin-top: 10px; margin-bottom: 20px;">
-  <Pagination :currentPage="this.pagination._page" :totalPages="this.pagination.totalPages" @page-change="changePage" />
+  <Pagination :page="this.pagination._page" :totalPages="this.pagination.totalPages" @page-change="changePage" />
 </div>
 </div>
 </div>
@@ -117,52 +117,52 @@ export default {
         });
     },
     filterProduct(id) {
-    
       if (id === 0) {
-      this.pagination.categoryId =null; // Đặt categoryId thành null để lấy tất cả sản phẩm
-      this.getProducts();
+          this.pagination.categoryId =null; // Đặt categoryId thành null để lấy tất cả sản phẩm
+          this.getProducts();
        } else {
-      this.pagination.categoryId = id;
-      console.log("sss",this.pagination.categoryId);
-      this.pagination._page = 1;
-      this.getProducts();
+          this.pagination.categoryId = id;
+          this.pagination._page = 1;
+          this.getProducts();
     }
     },
     Statusdata(selectedOption1){
       if (selectedOption1 === 'new') {
-            this.pagination.status = "new";
+          this.pagination.status = "new";
           this.pagination._page = 1;
           this.getProducts();
     } else if (selectedOption1 === 'old') {
-        this.pagination.status = "old";
+          this.pagination.status = "old";
           this.pagination._page = 1;
           this.getProducts();
     }else if(selectedOption1 === ""){
-      this.pagination.status =null;
-      this.getProducts();
+          this.pagination.status =null;
+          this.getProducts();
     }
     },
     sortdata(selectedOption2){
       if (selectedOption2 === 'desc') {
-            this.pagination._sort = "price";
+          this.pagination._sort = "price";
           this.pagination._order ="desc";
           this.pagination._page = 1;
           this.getProducts();
-    } else if (selectedOption2 === 'asc') {
-        this.pagination._sort = "price";
+    } 
+    else if (selectedOption2 === 'asc') {
+          this.pagination._sort = "price";
           this.pagination._order ="asc";
           this.pagination._page = 1;
           this.getProducts();
-    }else if(selectedOption2 === ""){
-      this.pagination._sort =null;
-      this.pagination._order =null;
-      this.getProducts();
+    }
+    else if(selectedOption2 === ""){
+          this.pagination._sort =null;
+          this.pagination._order =null;
+          this.getProducts();
     }
     },
 
     changePage(page) {
-      this.pagination._page = page;
-      this.getProducts();
+          this.pagination._page = page;
+          this.getProducts();
     }
   
   }

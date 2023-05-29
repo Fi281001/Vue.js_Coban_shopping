@@ -18,7 +18,7 @@
                         <p className="lead">
                             <strong> Status: </strong>    {{ product.status }}
                         </p>
-                        <button className="btn btn-outline-dark px-4 py-2" >ADD TO CART</button>
+                        <button className="btn btn-outline-dark px-4 py-2" @click="addProduct(product)" >ADD TO CART</button>
                         <router-link to="/cart" class="btn btn-outline-dark ms-2 px-4 py-2">
                             Go to cart
                         </router-link>
@@ -30,7 +30,8 @@
 </template>
 <script>
  import NavBar from '../components/NavBar.vue'
- export default {
+ import { computed } from "vue";
+  import { useStore } from "vuex"; export default {
     name: 'ProductDetail',
     components:{
         NavBar
@@ -39,6 +40,19 @@
         return {
             product: [],
         }
+    },
+    setup() {
+      const store = useStore();
+      function addProduct(p) {
+        let cart = { ...p };
+        console.log(">>>>>>",cart);
+        // store.dispatch("addProduct", cart);
+      }
+      return {
+        addProduct,
+        cart: computed(() => store.getters.getCart),
+        sum: computed(() => store.getters.getSum),
+      };
     },
     created(){
       let productid = this.$route.params.id

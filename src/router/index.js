@@ -1,5 +1,18 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
+const requireAuth = (to, from, next) => {
+  // Kiểm tra trạng thái đăng nhập ở đây (ví dụ: dùng vuex, localStorage, hoặc API request)
+  const isAuthenticated = localStorage.getItem("username"); // Hãy thay đổi hàm này theo nhu cầu của bạn
+
+  if (isAuthenticated !== null) {
+    // Nế'u người dùng đã đăng nhập, cho phép truy cập vào trang card
+    next();
+  } else {
+    alert("hãy đăng nhập");
+    // Nếu người dùng chưa đăng nhập, chuyển hướng đến trang đăng nhập
+    next("/login");
+  }
+};
 const routes = [
   {
     path: "/",
@@ -26,10 +39,12 @@ const routes = [
     name: "register",
     component: () => import("../views/Register.vue"),
   },
+
   {
     path: "/cart",
     name: "cart",
     component: () => import("../views/Cart.vue"),
+    beforeEnter: requireAuth, // Áp dụng navigation guard ở đây
   },
 ];
 
